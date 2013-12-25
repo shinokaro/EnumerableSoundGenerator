@@ -1,9 +1,9 @@
 =begin
-==Ticks�ɂ���
-�@Ticks�͐����ł��B0����n�܂�1���������܂��B
-�@Ticks�͔�т̂��鑝���͂���܂���B�܂�A2�ȏ�̑����͂��肦�܂���B
-�@Ticks�͓����Ń}�C�i�X�l���Ƃ邱�Ƃ�����܂����A���̏ꍇ�͒l���}�C�i�X�̊ԁA���0���o�͂��܂��B
-�@Ticks�Ɉˑ����鏈���͂��A�̂��Ƃ�O��Ƃ��Ă��܂��܂���B
+==Ticksについて
+　Ticksは整数です。0から始まり1ずつ増加します。
+　Ticksは飛びのある増加はありません。つまり、2以上の増加はありえません。
+　Ticksは内部でマイナス値をとることもありますが、その場合は値がマイナスの間、常に0を出力します。
+　Ticksに依存する処理はこ、のことを前提としてかまいません。
 =end
 class Ticks < Enumerator  
   def initialize(ticks=0)

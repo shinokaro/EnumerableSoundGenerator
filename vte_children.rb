@@ -1,16 +1,16 @@
 =begin
-�@VTE�p���N���X�̋L�q���@
+　VTE継承クラスの記述方法
 
-�@initialize���ɗ񋓃u���b�N���`��super�œn���B
-�@�ʏ�����͐M������
-�@�L�[���[�h�����̓p�����[�^�[
-�@�p�����[�^�[�擾�̓A�N�Z�b�T�[���o�R����
-�@�A�g���r���[�g��proc�������Ă���Bproc��call���Ď擾����
-�@����āA�p�����[�^�[�ɗ^����I�u�W�F�N�g��to_proc���T�|�[�g���Ă���K�v������B
-  call���ɒl��^���邩�͌������B
+　initialize中に列挙ブロックを定義しsuperで渡す。
+　通常引数は信号入力
+　キーワード引数はパラメーター
+　パラメーター取得はアクセッサーを経由する
+　アトリビュートはprocが入っている。procをcallして取得する
+　よって、パラメーターに与えるオブジェクトはto_procをサポートしている必要がある。
+  call時に値を与えるかは検討中。
   
-  Enumurator��e�Ƃ��Ă���̂ŗ񋓂������ɑ����Ă悢�B
-  �񋓂ɏI��肪�����Ă��悢�AStopIteration��O���������邱�ƂŌ㏈�����ł���B
+  Enumuratorを親としているので列挙が無限に続いてよい。
+  列挙に終わりがあってもよい、StopIteration例外が発生することで後処理ができる。
 =end
 module VTEHelper
   def attr_set(name, val)

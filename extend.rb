@@ -1,7 +1,7 @@
 # extend
 require "dxruby"
 
-# �w���p�[���\�b�h�@�F�@�ړI�́A�����ɉ����点��悤�ɂ��鎖
+# ヘルパーメソッド　：　目的は、すぐに音が鳴らせるようにする事
 class Array
   def to_sound
     ::DXRuby::SoundEffect.new(self)
@@ -12,12 +12,12 @@ class Enumerator::Lazy
     ::DXRuby::SoundEffect.new(self.to_a)
   end
 end
-# ���͒l��Proc�ł��邱�Ƃ�O��Ƃ���
-# Proc���Ăяo���΁A�o�͑��̃��\�b�h���Ăяo���`�Œl������
-# �v�Z���ɕK�v�Ȃ̂͐��l�ł��邪�A
-# Enumerator����l���Ƃ�Ƃ���next���\�b�h���Ăяo���Ȃ��Ă͖�Ȃ�
-# ���͈�����Proc�œ��ꂷ��΁A�Q�b�^�[���ɕ�����������ɂ��ށB
-# �܂�A�_�b�N�^�C�s���O�̂��߂̃w���p�[���\�b�h
+# 入力値はProcであることを前提とする
+# Procを呼び出せば、出力側のメソッドを呼び出す形で値が取れる
+# 計算時に必要なのは数値であるが、
+# Enumeratorから値をとるときはnextメソッドを呼び出さなくては鳴らない
+# 入力引数をProcで統一すれば、ゲッター時に分岐を書かずにすむ。
+# つまり、ダックタイピングのためのヘルパーメソッド
 class Object
   def to_proc
     proc { |*| self }
@@ -28,8 +28,8 @@ class Enumerator
     proc { |*| self.next }
   end
 end
-# �A�g���r���[�g�ɂ���l��Proc�ł��邱�Ƃ�O��Ƃ���
-# attr_caller�́A�L�q������̂��߂̃��\�b�h
+# アトリビュートにある値をProcであることを前提とする
+# attr_callerは、記述性向上のためのメソッド
 class Module
   private
   def attr_caller(*attr_names)
